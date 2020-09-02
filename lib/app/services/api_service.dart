@@ -9,7 +9,7 @@ class APIService {
 
   Future<String> getAccessToken() async {
     final response = await http.post(
-      api.tookenUri().toString(),
+      api.tokenUri().toString(),
       headers: {'Authorization': 'Basic ${api.apiKey}'},
     );
     if (response.statusCode == 200) {
@@ -20,7 +20,7 @@ class APIService {
       }
     }
     print(
-        'Request ${api.tookenUri()} failed \nResponse: ${response.statusCode} ${response.reasonPhrase}');
+        'Request ${api.tokenUri()} failed \nResponse: ${response.statusCode} ${response.reasonPhrase}');
     throw response;
   }
 }
