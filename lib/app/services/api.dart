@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:ncov_rest_api_app/app/services/api_keys.dart';
 import 'package:flutter/foundation.dart';
 
+
+enum Endpoint{
+  cases,
+  casesSuspected,
+  casesConfirmed,
+  deaths,
+  recovered,
+}
+
 class API{
   final String apiKey;
 
@@ -16,4 +25,18 @@ class API{
     host: host,
     path: 'token',
   );
+
+  Uri endpointUri(Endpoint endpoint) => Uri(
+    scheme: 'https',
+    host: host,
+    path: _paths[endpoint],
+  );
+
+  static Map<Endpoint, String> _paths = {
+    Endpoint.cases: 'cases',
+    Endpoint.casesSuspected: 'casesSuspected',
+    Endpoint.casesConfirmed: 'casesConfirmed',
+    Endpoint.deaths: 'deaths',
+    Endpoint.recovered: 'recovered'
+  };
 }
